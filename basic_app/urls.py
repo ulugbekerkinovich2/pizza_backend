@@ -1,6 +1,8 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
 
 from basic_app import views
+from .views import ChatRoomViewSet, ChatMessageViewSet
 
 urlpatterns = [
     path('users/', views.ListUsers.as_view()),
@@ -29,4 +31,13 @@ urlpatterns = [
     path('about_product_detail/<int:pk>', views.DetailAboutProductDetail.as_view()),
     path('form/', views.ListForm.as_view()),
     path('form/<int:pk>', views.DetailForm.as_view()),
+]
+
+router = routers.DefaultRouter()
+router.register('chatrooms/', ChatRoomViewSet)
+router.register('chatmessages/', ChatMessageViewSet)
+
+urlpatterns += [
+    path('', include(router.urls)),
+    # path('v1/', views.usd_to_eur)
 ]

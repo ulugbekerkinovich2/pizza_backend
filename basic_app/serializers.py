@@ -2,6 +2,7 @@ from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
 from basic_app import models
+from basic_app.models import ChatRoom, ChatMessage
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -139,4 +140,16 @@ class AboutProductDetailSerializer(serializers.ModelSerializer):
 class FormSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Form
+        fields = '__all__'
+
+
+class ChatRoomSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ChatRoom
+        fields = '__all__'
+
+
+class ChatMessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ChatMessage
         fields = '__all__'

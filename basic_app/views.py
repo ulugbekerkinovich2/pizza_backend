@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, viewsets
 
 from basic_app import models, serializers
+from basic_app.models import ChatRoom, ChatMessage
+from basic_app.serializers import ChatRoomSerializer, ChatMessageSerializer
 
 
 # Create your views here.
@@ -133,3 +135,13 @@ class ListForm(generics.ListCreateAPIView):
 class DetailForm(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Form.objects.all()
     serializer_class = serializers.FormSerializer
+
+
+class ChatRoomViewSet(viewsets.ModelViewSet):
+    queryset = ChatRoom.objects.all()
+    serializer_class = ChatRoomSerializer
+
+
+class ChatMessageViewSet(viewsets.ModelViewSet):
+    queryset = ChatMessage.objects.all()
+    serializer_class = ChatMessageSerializer

@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'basic_app',
     'rest_framework',
     'django_cleanup',
-    "corsheaders"
+    "corsheaders",
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -41,7 +42,14 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'pizza.urls'
-
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('localhost', 6379)],
+        },
+    },
+}
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
